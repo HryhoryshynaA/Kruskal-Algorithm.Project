@@ -28,8 +28,7 @@ class Graph:
         if rank[root_vertice_a] == rank[vertice_b]:  # якщо один ранк, то тоді ми самі обираємо з якої на яку вершину посилатися
             parent[vertice_b] = root_vertice_a
             rank[root_vertice_a] += 1  # тому що ранки одинакові при обʼєднанні ранк потрбіно збільшити на одиницю
-        elif rank[root_vertice_a] > rank[
-            root_vertice_b]:  # порівнюємо ранки щоб ми знали що буде новим абсолютним рутом
+        elif rank[root_vertice_a] > rank[root_vertice_b]:  # порівнюємо ранки щоб ми знали що буде новим абсолютним рутом
             parent[root_vertice_b] = root_vertice_a
         elif rank[root_vertice_a] < rank[root_vertice_b]:
             parent[root_vertice_a] = root_vertice_b
