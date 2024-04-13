@@ -3,7 +3,7 @@ class Graph:
         self.vertices = vertices # вершини
         self.edges = [] # ребра
         self.adjacency_matrix = ""   # матриця суміжності
-        self.adjacency_list = "" # список суміжності
+        self.adjacency_list = {v: [] for v in vertices} # список суміжності: це у нас словник, де вершина буде мати відповідну характеристику
 
     def find_absolute_parent(self, vertice, parent):#рекурсивний пошук абсолютного батька/матері(жарт)
         if parent[vertice] == -1:
