@@ -5,8 +5,10 @@ class Graph:
         self.adjacency_matrix = ""   # матриця суміжності
         self.adjacency_list = "" # список суміжності
 
-    def absolute_parent(self):
-        return "absolute parent"
+    def find_absolute_parent(self, verce, parent):#рекурсивний пошук абсолютного батька/матері(жарт)
+        if parent[verce] == -1:
+            return verce
+        self.find_absolute_parent(parent[verce], parent)
 
     def union(self):
         return "updated set"
