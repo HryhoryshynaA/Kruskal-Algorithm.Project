@@ -25,8 +25,7 @@ class Graph:
     def union(self, vertice_a, vertice_b, parent, rank):
         root_vertice_a = self.find_absolute_parent(parent, vertice_a)
         root_vertice_b = self.find_absolute_parent(parent, vertice_b)
-        if rank[root_vertice_a] == rank[
-            vertice_b]:  # якщо один ранк, то тоді ми самі обираємо з якої на яку вершину посилатися
+        if rank[root_vertice_a] == rank[vertice_b]:  # якщо один ранк, то тоді ми самі обираємо з якої на яку вершину посилатися
             parent[vertice_b] = root_vertice_a
             rank[root_vertice_a] += 1  # тому що ранки одинакові при обʼєднанні ранк потрбіно збільшити на одиницю
         elif rank[root_vertice_a] > rank[
