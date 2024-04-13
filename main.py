@@ -25,20 +25,3 @@ class Graph:
 
     def kruskal(self):
         return "smallest spanning tree"
-
-    def kruskal(self):
-        minimum_spanning_tree = set()
-        parent = {}
-        rank = {}
-        for v in self.vertices:
-            parent[v] = -1
-            rank[v] = 0
-        sorted_edges = sorted(self.edges, key=lambda x: x[2])
-        for edge in sorted_edges:
-            u, v, weight = edge
-            root_u = self.find_parent(parent, u)
-            root_v = self.find_parent(parent, v)
-            if root_u != root_v:
-                minimum_spanning_tree.add(edge)
-                self.union(parent, rank, root_u, root_v)
-        return minimum_spanning_tree  
