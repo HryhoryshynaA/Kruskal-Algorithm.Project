@@ -1,3 +1,5 @@
+import random
+
 class Graph:
     def __init__(self, vertices):
         self.vertices = vertices # вершини
@@ -35,3 +37,18 @@ class Graph:
 
     def kruskal(self):
         return "smallest spanning tree"
+
+
+
+def generate_graph(num_vertices, density):
+    vertices = list(range(num_vertices))
+    graph = Graph(vertices)
+    max_edges = num_vertices * (num_vertices - 1) / 2
+    probability = density / max_edges # формула за моделлю Ердеша — Реньї
+
+    for u in range(num_vertices):
+        for v in range(u + 1, num_vertices):
+            if random.random() < probability: #генеруємо рандомне число між 0 і 1. Якщо менше то "успіх"
+                weight = random.randint(1, 50)
+                graph.add_edge(u, v, weight)
+    return graph
