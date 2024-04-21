@@ -51,8 +51,8 @@ class Graph:
                 self.union(parent, rank, root_u, root_v)
         return minimum_spanning_tree
 
-    def visualize(self, output_dir, trial_number):
-        output_file = os.path.join(output_dir, f"Trial_{trial_number}.png")
+    def visualize(self, output_dir, trial_number, num_vertices, density):
+        output_file = os.path.join(output_dir, f"Trial_{trial_number}_Graph_{num_vertices}_{density}.png")
         G = nx.Graph()
         for edge in self.edges:
             u, v, weight = edge
@@ -91,9 +91,9 @@ def experiment(num_vertices_list, density_list, num_trials, output_directory):
         for density in density_list:
             for trial in range(1, num_trials + 1):
                 random_graph = generate_random_graph(num_vertices, density)
-                random_graph.visualize(output_directory, trial)
+                random_graph.visualize(output_directory, trial, num_vertices, density)
 
-        trial_output_file = os.path.join("experiment_results.csv")
+        trial_output_file = os.path.join("experiment_result.csv")
 
         with open(trial_output_file, "w") as f:
             f.write("NumVertices, Density, AvgKruskalTime(ms)\n")
@@ -108,10 +108,13 @@ def experiment(num_vertices_list, density_list, num_trials, output_directory):
                         total_time += (end_time - start_time) * 1000
                     avg_time = total_time / num_trials
                     f.write(f"{num_vertices}, {density}, {avg_time}\n")
+    print("Експерименти успішно проведені!")
 
 
-num_vertices_list = [10, 20, 30]
-density_list = [0.2, 0.4, 0.6]
+num_vertices_list = [58, 20, 30, 45, 50, 84, 73, 69, 46, 24,]
+density_list = [0.7, 0.8, 0.6, 0.4, 0.85]
 num_trials = 20
 directory = "Trial graphs"
+if not os.path.exists(directory):
+    os.makedirs(directory)
 experiment(num_vertices_list, density_list, num_trials, directory)
